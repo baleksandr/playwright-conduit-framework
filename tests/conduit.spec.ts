@@ -7,7 +7,7 @@ test('Create article with defoult title', async ({ testArticle, page }) => {
     await expect(page.locator('.tag-list')).toContainText('default');
 });
 
-test.only('Create, update annd delete article with custom title', async ({ articleBuilder, page }) => {
+test('Create, update annd delete article with custom title', async ({ articleBuilder, page }) => {
     const initialArticle = await articleBuilder.createNewArticle(
         {
             title: `${faker.word.sample()}`,
