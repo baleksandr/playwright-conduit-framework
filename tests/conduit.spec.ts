@@ -1,5 +1,5 @@
 import { test, expect } from '../fixtures/conduit.fixture.ts'
-import { ArticleHelper } from '../api/article.helper';
+import {faker} from '@faker-js/faker'
 
 test('Create article with defoult title', async ({ testArticle, page }) => {
 
@@ -7,10 +7,10 @@ test('Create article with defoult title', async ({ testArticle, page }) => {
     await expect(page.locator('.tag-list')).toContainText('default');
 });
 
-test('Create, update annd delete article with custom title', async ({ articleBuilder, page }) => {
+test.only('Create, update annd delete article with custom title', async ({ articleBuilder, page }) => {
     const initialArticle = await articleBuilder.createNewArticle(
         {
-            title: "My Super Custom Title",
+            title: `${faker.word.sample()}`,
             description: "Custom Desc Aleks",
             body: "Custom Body Aleks",
             tagList: ["cool", "test", "tag5"]
@@ -20,14 +20,14 @@ test('Create, update annd delete article with custom title', async ({ articleBui
     await page.goto(`/article/${initialArticle.slug}`);
     await expect(page.locator('.tag-list')).toContainText('tag5')
 
-    const newTitle = `Updated Title ${Date.now()}`;
+    const newTitle = `Updated ${faker.word.sample()} ${Date.now()}`;
 
     const updatedArticle = await articleBuilder.updateArticle(initialArticle.slug, {
         title: newTitle
     });
 
     await page.goto(`/article/${updatedArticle.slug}`);
-    await expect(page.locator('h1')).toHaveText('WRONG TITLE FOR REPORT TEST')
+    await expect(page.locator('h1')).toHaveText(newTitle)
     expect(updatedArticle.title).toEqual(newTitle);
 
     await articleBuilder.deleteArticle(updatedArticle.slug)
