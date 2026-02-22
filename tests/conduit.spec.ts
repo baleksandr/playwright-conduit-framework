@@ -25,11 +25,9 @@ test('Create, update annd delete article with custom title', async ({ articleBui
     const updatedArticle = await articleBuilder.updateArticle(initialArticle.slug, {
         title: newTitle
     });
-    console.log("updatedArticle", updatedArticle);
-    
 
     await page.goto(`/article/${updatedArticle.slug}`);
-    await expect(page.locator('h1')).toHaveText(newTitle)
+    await expect(page.locator('h1')).toHaveText('WRONG TITLE FOR REPORT TEST')
     expect(updatedArticle.title).toEqual(newTitle);
 
     await articleBuilder.deleteArticle(updatedArticle.slug)

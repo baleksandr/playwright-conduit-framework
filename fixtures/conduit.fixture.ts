@@ -5,7 +5,6 @@ import { CreateApiClient } from '../api/client'; // ваша функція, щ�
 export { expect } from '@playwright/test';
 import axios from 'axios';
 
-
 // 1. Чітко описуємо інтерфейс фіктур
 type MyFixtures = {
     userToken: string;            // Тільки токен
