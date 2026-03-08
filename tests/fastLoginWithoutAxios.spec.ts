@@ -7,7 +7,8 @@ test('Hybrid Login via Playwright API Request', async ({ page, playwright }) => 
     // 2. API: Логин (встроенный метод post)
     const loginResponse = await apiContext.post('https://conduit-api.bondaracademy.com/api/users/login',
         {
-        data: {
+        data: 
+        {
             "user": { "email": "Aleks@ukr.net", "password": "Aleks123" }
         }
         });

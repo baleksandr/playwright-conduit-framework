@@ -28,7 +28,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # 1. Завантажуємо історію з гілки gh-pages для графіка Trends
+    # 1. Завантажуємо історію (щоб графік Trends працював)
     - name: Load Allure history
       uses: actions/checkout@v4
       if: always()
@@ -44,20 +44,19 @@ jobs:
         mkdir -p allure-results/history
         cp -R gh-pages-dir/history/* allure-results/history/ || true
 
-    # 2. Запуск тестів (ЧЕСНИЙ СТАТУС: покаже червоне, якщо впаде, але піде далі)
+    # 2. ЗАПУСК ТЕСТІВ (Чесний запуск: впаде — буде ЧЕРВОНИМ)
     - name: Run Playwright tests
       env:
         USER_EMAIL: ${{ secrets.USER_EMAIL }}
         USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
       run: npx playwright test
-      continue-on-error: true 
 
-    # 3. Генерація Allure звіту (виконується ЗАВЖДИ)
+    # 3. ГЕНЕРАЦІЯ ЗВІТУ (if: always() змушує працювати навіть після падіння тесту)
     - name: Generate Allure Report
-      if: always()
-      run: npx allure generate allure-results --output allure-report
+      if: always() 
+      run: npx allure generate allure-results --output allure-report --clean
 
-    # 4. Публікація на GitHub Pages
+    # 4. ДЕПЛОЙ ЗВІТУ (теж завжди)
     - name: Deploy Allure Report to GitHub Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v3
@@ -66,7 +65,7 @@ jobs:
         publish_dir: ./allure-report
         publish_branch: gh-pages
 
-    # 5. Зберігаємо стандартні артефакти (Trace, Video)
+    # 5. СТАНДАРТНІ АРТЕФАКТИ
     - name: Upload Playwright Artifacts
       if: always()
       uses: actions/upload-artifact@v4

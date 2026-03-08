@@ -24,7 +24,6 @@ test('Hibrid API + UI Test (Fast Login)', async ({ page }) => {
         const token = loginresponse.data.user.token
 
         // 2. UI: Инъекция токена в браузер (JWT Authentication)
-        // Мы делаем это ДО перехода на страницу
         await page.addInitScript((t) => {
             window.localStorage.setItem('jwtToken', t);
         }, token);
