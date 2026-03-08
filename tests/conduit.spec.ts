@@ -49,6 +49,6 @@ test('Create article with check Screenshot', async ({ pageManager, testArticle, 
     await articlePage.clickLikeButton()
     await articlePage.verifyLikes('1')
 
-    await articlePage.makeVisualCheck(articlePage.likeButton, 'click-likes-chromium-linux.png', {mask: []})
-    await articlePage.makeVisualCheck(articlePage.articleCard, 'first-article-chromium-linux.png')
+    await articlePage.makeVisualCheck(articlePage.likeButton, 'click-likes-chromium-linux-chromium-linux.png', {mask: []})
+    await articlePage.makeVisualCheck(articlePage.articleCard, 'first-article-chromium-linux-chromium-linux.png')
 });
