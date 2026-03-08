@@ -52,7 +52,7 @@ jobs:
       # Тут БЕЗ || true і БЕЗ continue-on-error
       run: npx playwright test --update-snapshots
 
-    # 3. ГЕНЕРАЦІЯ ЗВІТУ (Тільки Allure 3.0 синтаксис)
+    # 3. ГЕНЕРАЦІЯ ЗВІТУ (Тільки Allure 3.0 синтаксис) 
     - name: Generate Allure Report
       if: always() 
       run: npx allure generate allure-results --output allure-report
