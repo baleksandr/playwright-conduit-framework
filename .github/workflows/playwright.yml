@@ -9,9 +9,13 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    # Додаємо дозволи для запису звіту в GitHub Pages
+
+    # Дозволи для запису звіту в GitHub Pages
     permissions:
       contents: write
+      pages: write
+      id-token: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -25,17 +29,36 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      # --- КРОК 1: Завантажуємо історію з минулого звіту (для Trends) ---
+      - name: Load Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages-dir
+
+      - name: Copy history to results
+        if: always()
+        continue-on-error: true
+        run: |
+          mkdir -p allure-results/history
+          cp -R gh-pages-dir/history/* allure-results/history/ || true
+
+      # --- КРОК 2: Запуск тестів ---
       - name: Run Playwright tests
         env:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-        # Додаємо || true, щоб пайплайн не падав, якщо тести впали (нам все одно треба звіт)
+        # Використовуємо || true, щоб генерація звіту йшла далі навіть при падінні тестів
         run: npx playwright test || true
 
+      # --- КРОК 3: Генерація Allure звіту ---
       - name: Generate Allure Report
         if: always()
         run: npx allure generate allure-results --output allure-report
 
+      # --- КРОК 4: Публікація звіту на GitHub Pages ---
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -44,6 +67,7 @@ jobs:
           publish_dir: ./allure-report
           publish_branch: gh-pages
 
+      # Додатково зберігаємо стандартний звіт як артефакт
       - name: Upload Playwright Artifacts
         if: always()
         uses: actions/upload-artifact@v4
