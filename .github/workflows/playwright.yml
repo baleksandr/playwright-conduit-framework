@@ -1,77 +1,76 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master]
+    branches: [ main, master ]
   pull_request:
-    branches: [main, master]
+    branches: [ main, master ]
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-
-    # Дозволи для запису звіту в GitHub Pages
+    
     permissions:
       contents: write
       pages: write
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
 
-      # --- КРОК 1: Завантажуємо історію з минулого звіту (для Trends) ---
-      - name: Load Allure history
-        uses: actions/checkout@v4
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages-dir
+    # 1. Завантажуємо історію з гілки gh-pages для графіка Trends
+    - name: Load Allure history
+      uses: actions/checkout@v4
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages-dir
 
-      - name: Copy history to results
-        if: always()
-        continue-on-error: true
-        run: |
-          mkdir -p allure-results/history
-          cp -R gh-pages-dir/history/* allure-results/history/ || true
+    - name: Copy history to results
+      if: always()
+      continue-on-error: true
+      run: |
+        mkdir -p allure-results/history
+        cp -R gh-pages-dir/history/* allure-results/history/ || true
 
-      # --- КРОК 2: Запуск тестів ---
-      - name: Run Playwright tests
-        env:
-          USER_EMAIL: ${{ secrets.USER_EMAIL }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-        # Використовуємо || true, щоб генерація звіту йшла далі навіть при падінні тестів
-        run: npx playwright test || true
+    # 2. Запуск тестів (ЧЕСНИЙ СТАТУС: покаже червоне, якщо впаде, але піде далі)
+    - name: Run Playwright tests
+      env:
+        USER_EMAIL: ${{ secrets.USER_EMAIL }}
+        USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+      run: npx playwright test
+      continue-on-error: true 
 
-      # --- КРОК 3: Генерація Allure звіту ---
-      - name: Generate Allure Report
-        if: always()
-        run: npx allure generate allure-results --output allure-report
+    # 3. Генерація Allure звіту (виконується ЗАВЖДИ)
+    - name: Generate Allure Report
+      if: always()
+      run: npx allure generate allure-results --output allure-report
 
-      # --- КРОК 4: Публікація звіту на GitHub Pages ---
-      - name: Deploy Allure Report to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
-          publish_branch: gh-pages
+    # 4. Публікація на GitHub Pages
+    - name: Deploy Allure Report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
+        publish_branch: gh-pages
 
-      # Додатково зберігаємо стандартний звіт як артефакт
-      - name: Upload Playwright Artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+    # 5. Зберігаємо стандартні артефакти (Trace, Video)
+    - name: Upload Playwright Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
