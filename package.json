@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
-    "test:allure": "npx playwright test && npm run allure:generate && npm run allure:open",
-    "allure:history": "if exist allure-report\\history (if not exist allure-results\\history mkdir allure-results\\history && xcopy /s /e /y allure-report\\history allure-results\\history)",
-    "allure:generate": "npm run allure:history && npx allure generate allure-results -o allure-report",
-    "allure:open": "npx allure open allure-report"
+    "allure:generate": "npx allure generate allure-results --output allure-report",
+    "allure:open": "npx allure open allure-report",
+    "test:allure": "npx playwright test || npm run allure:generate && npm run allure:open"
   },
   "keywords": [],
   "author": "",
