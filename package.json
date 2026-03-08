@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:allure": "npx playwright test && npm run allure:generate && npm run allure:open",
+    "allure:history": "if exist allure-report\\history (if not exist allure-results\\history mkdir allure-results\\history && xcopy /s /e /y allure-report\\history allure-results\\history)",
+    "allure:generate": "npm run allure:history && npx allure generate allure-results -o allure-report",
+    "allure:open": "npx allure open allure-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -11,7 +17,8 @@
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.0"
+    "@types/node": "^25.3.0",
+    "allure-playwright": "^3.6.0"
   },
   "dependencies": {
     "axios": "^1.13.5",

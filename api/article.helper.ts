@@ -40,7 +40,7 @@ export class ArticleHelper {
         );
 
         if (response.status !== 204 && response.status !== 200) {
-            throw new Error(`Delete failed for ${response.data.slug}! Status: ${response.status}`)
+            throw new Error(`Delete failed for ${slugId}! Status: ${response.status}`)
         }
         return response.status
     }

@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
-import 'dotenv/config';
+import 'dotenv/config'; // Це магічна команда, яка каже: "Візьми все з .env і поклади в пам'ять процесу"
+import { execSync } from 'child_process';
 
 /**
  * Read environment variables from file.
@@ -12,22 +13,37 @@ import 'dotenv/config';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+// Перед кожним запуском просто видаляємо папку з результатами
+if (!process.env.CI) {
+  try { execSync('if exist allure-results rmdir /s /q allure-results'); } catch (e) {}
+}
+
 export default defineConfig({
+  timeout: 40000, // Timeout for each test in milliseconds. Defaults to 30 seconds
+  // globalTimeout: 60000,
+  expect: {
+    timeout: 10000,
+    // toMatchSnapshot: {maxDiffPixels: 50}
+  },
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 2,
+  retries: process.env.CI ? 2 : 1,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html'], ['list']],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  reporter: [
+    ['html'],
+    ['list'],
+    ['allure-playwright', { outputFolder: 'allure-results' }]
+  ],
   use: {
+    actionTimeout: 10000,     // ТАЙМАУТ ДЛЯ ДІЙ (click, fill, type)
+    navigationTimeout: 15000,     // ТАЙМАУТ ДЛЯ НАВІГАЦІЇ (page.goto)
     /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
     baseURL: 'https://conduit.bondaracademy.com',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

@@ -4,17 +4,31 @@ import { ArticleHelper } from '../api/article.helper';
 import { CreateApiClient } from '../api/client'; // ваша функція, що створює axios з токеном
 export { expect } from '@playwright/test';
 import axios from 'axios';
+import { PageManager } from '../page-objects/PageManager';
+import { ArticlePage } from '../page-objects/ArticlePage'
 
 // 1. Чітко описуємо інтерфейс фіктур
 type MyFixtures = {
-    userToken: string;            // Тільки токен
-    apiClient: AxiosInstance;     // Готовий Axios інстанс
+    articlePage: ArticlePage; // Або конкретний тип твого класу
     articleBuilder: ArticleHelper;
     testArticle: { title: string; slug: string }; // Дані статті
+    userToken: string;            // Тільки токен
+    apiClient: AxiosInstance;     // Готовий Axios інстанс
+    pageManager: PageManager
 }
 
 // 2. Передаємо інтерфейс у extend
 export const test = base.extend<MyFixtures>({
+    // UI Фікстура: створює менеджер сторінок
+    pageManager: async ({ page }, use) => {
+        await use(new PageManager(page));
+    },
+
+    articlePage: async ({ pageManager }, use) => {
+        // const articlePage = new ArticlePage(page)
+        await use(pageManager.onArticlePage())
+    },
+
     // --- ФІКСТУРА 1: Логін і отримання токена ---
     userToken: async ({ }, use) => {
         const login = await axios.post('https://conduit-api.bondaracademy.com/api/users/login', {
