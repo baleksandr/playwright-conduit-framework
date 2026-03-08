@@ -1,2 +1,0 @@
-A snapshot doesn't exist at /home/runner/work/playwright-conduit-framework/playwright-conduit-framework/tests/conduit.spec.ts-snapshots/click-likes-chromium-linux.png, writing actual.
-A snapshot doesn't exist at /home/runner/work/playwright-conduit-framework/playwright-conduit-framework/tests/conduit.spec.ts-snapshots/first-article-chromium-linux.png, writing actual.
