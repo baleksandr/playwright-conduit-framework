@@ -45,12 +45,12 @@ jobs:
         cp -R gh-pages-dir/history/* allure-results/history/ || true
 
     # 2. ЗАПУСК ТЕСТІВ (Чесний: впаде - буде червоним!)
-    - name: Run Playwright tests
+    - name: Run Playwright tests (update snapshots)
       env:
         USER_EMAIL: ${{ secrets.USER_EMAIL }}
         USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
       # Тут БЕЗ || true і БЕЗ continue-on-error
-      run: npx playwright test
+      run: npx playwright test --update-snapshots
 
     # 3. ГЕНЕРАЦІЯ ЗВІТУ (Тільки Allure 3.0 синтаксис)
     - name: Generate Allure Report
