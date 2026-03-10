@@ -17,6 +17,7 @@
     "@faker-js/faker": "^10.3.0",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.0",
+    "allure-commandline": "^2.37.0",
     "allure-playwright": "^3.6.0"
   },
   "dependencies": {
