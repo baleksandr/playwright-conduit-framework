@@ -16,7 +16,11 @@ import { execSync } from 'child_process';
 
 // Перед кожним запуском просто видаляємо папку з результатами
 if (!process.env.CI) {
+  // локально чистимо результати
   try { execSync('if exist allure-results rmdir /s /q allure-results'); } catch (e) {}
+} else {
+  // на CI переносимо history
+  try { execSync('xcopy /E /I /Y allure-report\\history allure-results\\history'); } catch (e) {}
 }
 
 export default defineConfig({
