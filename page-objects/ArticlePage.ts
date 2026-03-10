@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test'; // Не з 'playwright', не з 'jest'
+import { Page, Locator, expect } from '@playwright/test';
 
 export class ArticlePage {
     readonly page: Page;

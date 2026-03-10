@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 import axios from 'axios'
 import { error } from 'node:console';
 
+
 test('Hibrid API + UI Test (Fast Login)', async ({ page }) => {
     // 1. API: Получаем токен (Login через Axios)
 
