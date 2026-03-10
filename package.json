@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
-    "allure:generate": "npx allure generate allure-results --output allure-report",
-    "allure:open": "npx allure open allure-report",
-    "test:allure": "npx playwright test || npm run allure:generate && npm run allure:open"
+    "allure:clean": "rm -rf allure-report",
+    "allure:generate": "npm run allure:clean && allure generate allure-results -o allure-report",
+    "allure:open": "allure open allure-report",
+    "test:allure": "playwright test ; npm run allure:generate ; npm run allure:open"
   },
   "keywords": [],
   "author": "",
