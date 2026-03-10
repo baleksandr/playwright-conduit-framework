@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","987","Hybrid Login via Playwright API Request","chromium","2026-03-10","passed","2026-03-10","","fastLoginWithoutAxios.spec.ts","",""
+"","2007","Create article with defoult title","chromium","2026-03-10","passed","2026-03-10","","conduit.spec.ts","",""
+"","2496","Create, update annd delete article with custom title","chromium","2026-03-10","passed","2026-03-10","","conduit.spec.ts","",""
+"","905","Hibrid API + UI Test (Fast Login)","chromium","2026-03-10","passed","2026-03-10","","fastLoginFromAxios.spec.ts","",""
+"","3012","Create article with check Screenshot","chromium","2026-03-10","passed","2026-03-10","","conduit.spec.ts","",""
