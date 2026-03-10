@@ -9,7 +9,7 @@ import { ArticlePage } from '../page-objects/ArticlePage'
 
 // 1. Чітко описуємо інтерфейс фіктур
 type MyFixtures = {
-    articlePage: ArticlePage; // Або конкретний тип твого класу
+    articlePage: (title?: string) => ArticlePage; // Або конкретний тип твого класу
     articleBuilder: ArticleHelper;
     testArticle: { title: string; slug: string }; // Дані статті
     userToken: string;            // Тільки токен
@@ -26,7 +26,9 @@ export const test = base.extend<MyFixtures>({
 
     articlePage: async ({ pageManager }, use) => {
         // const articlePage = new ArticlePage(page)
-        await use(pageManager.onArticlePage())
+        // Фікстура повертає не об'єкт, а можливість його створити з параметром
+        const factory = (title?: string) => pageManager.onArticlePage(title);
+        await use(factory)
     },
 
     // --- ФІКСТУРА 1: Логін і отримання токена ---

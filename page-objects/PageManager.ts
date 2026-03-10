@@ -4,13 +4,12 @@ import { ArticlePage } from './ArticlePage'
 export class PageManager {
 
     private readonly page: Page;
-    // private readonly articlePage: ArticlePage; //присвоювати ці екземпляри полям
 
-    constructor(page: Page) { //ініціалізувати конструктор, який буде створювати екземпляри ваших сторінок
+    constructor(page: Page) {
         this.page = page
     }
 
-    onArticlePage(title?: string) { //створити окремі методи, які повертатимуть вам цей екземпляр
+    onArticlePage(title?: string) {
         return new ArticlePage(this.page, title);
     }
 }

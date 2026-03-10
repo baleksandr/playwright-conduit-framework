@@ -8,10 +8,11 @@ test('Create article with defoult title', async ({ testArticle, page }) => {
     await expect.soft(page.locator('h1')).toHaveText(testArticle.title);
 });
 
-test('Create, update annd delete article with custom title', async ({pageManager, articleBuilder, page }) => {
+test('Create, update annd delete article with custom title', async ({ articlePage, articleBuilder, page }) => {
+    const pageObj = articlePage();
     const newTitle = `Updated ${faker.word.sample()} ${Date.now()}`;
-    const articleFirstPage = pageManager.onArticlePage();
-    const articlePageWithFilters = pageManager.onArticlePage(newTitle);
+    // const articleFirstPage = pageManager.onArticlePage();
+    const articlePageWithFilters = articlePage(newTitle);
     const initialArticle = await articleBuilder.createNewArticle(
         {
             title: `${faker.word.sample()}`,
@@ -24,31 +25,32 @@ test('Create, update annd delete article with custom title', async ({pageManager
     await page.goto(`/article/${initialArticle.slug}`);
     await expect(page.locator('.tag-list')).toContainText('tag5')
 
-    const updatedArticle = await articleBuilder.updateArticle(initialArticle.slug, {
-        title: newTitle
-    });
+    const updatedArticle = await articleBuilder.updateArticle(initialArticle.slug,
+        {
+            title: newTitle
+        });
 
     await page.goto(`/article/${updatedArticle.slug}`);
-    await articleFirstPage.veriFyPageTitle(newTitle)
+    await pageObj.veriFyPageTitle(newTitle)
     expect(updatedArticle.title).toEqual(newTitle);
 
     await articleBuilder.deleteArticle(updatedArticle.slug)
 
     await page.goto(`/article/${updatedArticle.slug}`);
-    await expect(articleFirstPage.articleCard).not.toHaveText(newTitle)
+    await expect(pageObj.articleCard).not.toHaveText(newTitle)
     await expect(articlePageWithFilters.articleCard).not.toBeVisible()
 });
 
-test('Create article with check Screenshot', async ({ pageManager, testArticle, page }) => {
-    const articlePage = pageManager.onArticlePage();
+test('Create article with check Screenshot', async ({ articlePage, testArticle, page }) => {
+    const pageObj = articlePage();
 
     await page.goto(`/article/${testArticle.slug}`);
-    await articlePage.verifyTag('default')
-    await articlePage.goToHome()
-    await articlePage.veriFyPageTitle(testArticle.title)
-    await articlePage.clickLikeButton()
-    await articlePage.verifyLikes('1')
+    await pageObj.verifyTag('default')
+    await pageObj.goToHome()
+    await pageObj.veriFyPageTitle(testArticle.title)
+    await pageObj.clickLikeButton()
+    await pageObj.verifyLikes('1')
 
-    await articlePage.makeVisualCheck(articlePage.likeButton, 'click-likes.png', {mask: []})
-    await articlePage.makeVisualCheck(articlePage.articleCard, 'first-article.png')
+    await pageObj.makeVisualCheck(pageObj.likeButton, 'click-likes.png', { mask: [] })
+    await pageObj.makeVisualCheck(pageObj.articleCard, 'first-article.png')
 });

@@ -11,7 +11,6 @@ export class ArticlePage {
     constructor(page: Page, articleTitle?: string) {
         this.page = page
         this.tagList = page.locator('.tag-list');
-        // this.articleCard = page.locator('app-article-preview').first();
         const baseLocator = page.locator('app-article-preview');
         this.articleCard = articleTitle
             ? baseLocator.filter({ hasText: articleTitle })
@@ -19,7 +18,6 @@ export class ArticlePage {
 
         this.homeButton = page.getByText(' Home ');
         this.pageTitle = page.locator('h1');
-        // this.articleCard = page.locator('app-article-preview').filter({ hasText: `${}` });
         this.likeButton = this.articleCard.locator('button');
     }
 
@@ -54,7 +52,7 @@ export class ArticlePage {
             mask: options.mask || defaultMask,
             maxDiffPixelRatio: options.maxDiffPixelRatio || 0.01,
             threshold: 0.3, //(чутливість окремого пікселя)
-            ...options // будь-які інші опції, що ти захочеш додати
+            ...options 
         })
     }
 }
