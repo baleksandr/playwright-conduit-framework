@@ -17,10 +17,10 @@ import { execSync } from 'child_process';
 // Перед кожним запуском просто видаляємо папку з результатами
 if (!process.env.CI) {
   // локально чистимо результати
-  try { execSync('if exist allure-results rmdir /s /q allure-results'); } catch (e) {}
+  try { execSync('if exist allure-results rmdir /s /q allure-results'); } catch (e) { }
 } else {
   // на CI переносимо history
-  try { execSync('xcopy /E /I /Y allure-report\\history allure-results\\history'); } catch (e) {}
+  try { execSync('xcopy /E /I /Y allure-report\\history allure-results\\history'); } catch (e) { }
 }
 
 export default defineConfig({
@@ -49,10 +49,13 @@ export default defineConfig({
     navigationTimeout: 15000,     // ТАЙМАУТ ДЛЯ НАВІГАЦІЇ (page.goto)
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: 'https://conduit.bondaracademy.com',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    // screenshot: 'only-on-failure',
+    // video: 'retain-on-failure',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'retain-on-failure',
+    // trace: 'retain-on-failure',
+    screenshot: 'on',
+    video: 'on-first-retry', // или 'on'
+    trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
