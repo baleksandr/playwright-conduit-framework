@@ -55,7 +55,7 @@ jobs:
     # 3. ГЕНЕРАЦІЯ ЗВІТУ (Тільки Allure 3.0 синтаксис)
     - name: Generate Allure Report
       if: always() 
-      run: npx allure generate allure-results --output allure-report
+      run: npx allure generate allure-results --clean false --output allure-report
 
     # 4. ДЕПЛОЙ ЗВІТУ (Працює завжди)
     - name: Deploy Allure Report to GitHub Pages
