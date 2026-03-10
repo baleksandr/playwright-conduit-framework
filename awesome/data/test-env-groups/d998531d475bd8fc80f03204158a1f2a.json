@@ -1,1 +1,1 @@
-{"id":"d998531d475bd8fc80f03204158a1f2a","fullName":"fastLoginWithoutAxios.spec.ts:3:1","name":"Hybrid Login via Playwright API Request","status":"passed","testResultsByEnv":{"default":"b2c6a4c871d50c02d575c76769f44c09"}}
+{"id":"d998531d475bd8fc80f03204158a1f2a","fullName":"fastLoginWithoutAxios.spec.ts:3:1","name":"Hybrid Login via Playwright API Request","status":"failed","testResultsByEnv":{"default":"d0ec7d94aac4973bc348376c0d6a31ea"}}
