@@ -44,10 +44,8 @@ jobs:
         if: always()
         continue-on-error: true
         run: |
-          mkdir -p allure-results/history
-          if [ -d "gh-pages-dir/history" ]; then
-            cp -R gh-pages-dir/history/* allure-results/history/
-          fi
+         mkdir -p allure-results/history
+         cp -v gh-pages-dir/history/* allure-results/history/ || true
 
       # 2. ЗАПУСК ТЕСТІВ
       - name: Run Playwright tests
@@ -58,9 +56,11 @@ jobs:
 
       # 3. ГЕНЕРАЦІЯ ЗВІТУ
       - name: Generate Allure Report
-        if: always()
+        if: always() 
         run: |
-          npx allure generate allure-results --clean -o allure-report
+         ls -R allure-results  # Это покажет в логах, есть ли там вообще файлы .json
+         npx allure generate allure-results --clean -o allure-report
+
 
       # 4. ДЕПЛОЙ ЗВІТУ
       - name: Deploy Allure Report to GitHub Pages
