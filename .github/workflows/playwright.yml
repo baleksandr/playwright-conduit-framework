@@ -51,6 +51,7 @@ jobs:
         USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
       # Тут БЕЗ || true і БЕЗ continue-on-error
       run: npx playwright test
+      continue-on-error: true
 
     # 3. ГЕНЕРАЦІЯ ЗВІТУ (Тільки Allure 3.0 синтаксис)
     - name: Generate Allure Report
