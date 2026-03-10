@@ -1,0 +1,282 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - navigation [ref=e4]:
+    - generic:
+      - link "conduit" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link " New Article" [ref=e10] [cursor=pointer]:
+            - /url: /editor
+            - generic [ref=e11]: 
+            - text: New Article
+        - listitem [ref=e12]:
+          - link " Settings" [ref=e13] [cursor=pointer]:
+            - /url: /settings
+            - generic [ref=e14]: 
+            - text: Settings
+        - listitem [ref=e15]:
+          - link "Aleks_test" [ref=e16] [cursor=pointer]:
+            - /url: /profile/Aleks_test
+            - img [ref=e17]
+            - text: Aleks_test
+  - generic [ref=e21]:
+    - generic [ref=e22]:
+      - list [ref=e24]:
+        - listitem [ref=e25]:
+          - generic [ref=e26] [cursor=pointer]: Your Feed
+        - listitem [ref=e27]:
+          - generic [ref=e28]: Global Feed
+        - text: 
+      - generic [ref=e29]:
+        - generic [ref=e31]:
+          - generic [ref=e33]:
+            - link [ref=e34] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e35]
+            - generic [ref=e36]:
+              - link "Aleks_test" [ref=e37] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e38]: March 10, 2026
+            - button " 0" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: 
+              - text: "0"
+          - link "lazily Custom Desc Aleks Read more... Test cool tag5" [ref=e42] [cursor=pointer]:
+            - /url: /article/lazily-41884
+            - heading "lazily" [level=1] [ref=e43]
+            - paragraph [ref=e44]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e45]:
+              - listitem [ref=e46]: Test
+              - listitem [ref=e47]: cool
+              - listitem [ref=e48]: tag5
+        - generic [ref=e50]:
+          - generic [ref=e52]:
+            - link [ref=e53] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e54]
+            - generic [ref=e55]:
+              - link "Aleks_test" [ref=e56] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e57]: March 10, 2026
+            - button " 0" [ref=e59] [cursor=pointer]:
+              - generic [ref=e60]: 
+              - text: "0"
+          - link "misguided Custom Desc Aleks Read more... Test cool tag5" [ref=e61] [cursor=pointer]:
+            - /url: /article/misguided-41884
+            - heading "misguided" [level=1] [ref=e62]
+            - paragraph [ref=e63]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e64]:
+              - listitem [ref=e65]: Test
+              - listitem [ref=e66]: cool
+              - listitem [ref=e67]: tag5
+        - generic [ref=e69]:
+          - generic [ref=e71]:
+            - link [ref=e72] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e73]
+            - generic [ref=e74]:
+              - link "Aleks_test" [ref=e75] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e76]: March 10, 2026
+            - button " 0" [ref=e78] [cursor=pointer]:
+              - generic [ref=e79]: 
+              - text: "0"
+          - link "now Custom Desc Aleks Read more... Test cool tag5" [ref=e80] [cursor=pointer]:
+            - /url: /article/now-41884
+            - heading "now" [level=1] [ref=e81]
+            - paragraph [ref=e82]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e83]:
+              - listitem [ref=e84]: Test
+              - listitem [ref=e85]: cool
+              - listitem [ref=e86]: tag5
+        - generic [ref=e88]:
+          - generic [ref=e90]:
+            - link [ref=e91] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e92]
+            - generic [ref=e93]:
+              - link "Aleks_test" [ref=e94] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e95]: March 10, 2026
+            - button " 0" [ref=e97] [cursor=pointer]:
+              - generic [ref=e98]: 
+              - text: "0"
+          - link "abaft Custom Desc Aleks Read more... Test cool tag5" [ref=e99] [cursor=pointer]:
+            - /url: /article/abaft-41884
+            - heading "abaft" [level=1] [ref=e100]
+            - paragraph [ref=e101]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e102]:
+              - listitem [ref=e103]: Test
+              - listitem [ref=e104]: cool
+              - listitem [ref=e105]: tag5
+        - generic [ref=e107]:
+          - generic [ref=e109]:
+            - link [ref=e110] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e111]
+            - generic [ref=e112]:
+              - link "Aleks_test" [ref=e113] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e114]: March 10, 2026
+            - button " 0" [ref=e116] [cursor=pointer]:
+              - generic [ref=e117]: 
+              - text: "0"
+          - link "even Custom Desc Aleks Read more... Test cool tag5" [ref=e118] [cursor=pointer]:
+            - /url: /article/even-41884
+            - heading "even" [level=1] [ref=e119]
+            - paragraph [ref=e120]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e121]:
+              - listitem [ref=e122]: Test
+              - listitem [ref=e123]: cool
+              - listitem [ref=e124]: tag5
+        - generic [ref=e126]:
+          - generic [ref=e128]:
+            - link [ref=e129] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e130]
+            - generic [ref=e131]:
+              - link "Aleks_test" [ref=e132] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e133]: March 10, 2026
+            - button " 0" [ref=e135] [cursor=pointer]:
+              - generic [ref=e136]: 
+              - text: "0"
+          - link "expert Custom Desc Aleks Read more... Test cool tag5" [ref=e137] [cursor=pointer]:
+            - /url: /article/expert-41884
+            - heading "expert" [level=1] [ref=e138]
+            - paragraph [ref=e139]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e140]:
+              - listitem [ref=e141]: Test
+              - listitem [ref=e142]: cool
+              - listitem [ref=e143]: tag5
+        - generic [ref=e145]:
+          - generic [ref=e147]:
+            - link [ref=e148] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e149]
+            - generic [ref=e150]:
+              - link "Aleks_test" [ref=e151] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e152]: March 10, 2026
+            - button " 0" [ref=e154] [cursor=pointer]:
+              - generic [ref=e155]: 
+              - text: "0"
+          - link "carelessly Custom Desc Aleks Read more... Test cool tag5" [ref=e156] [cursor=pointer]:
+            - /url: /article/carelessly-41884
+            - heading "carelessly" [level=1] [ref=e157]
+            - paragraph [ref=e158]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e159]:
+              - listitem [ref=e160]: Test
+              - listitem [ref=e161]: cool
+              - listitem [ref=e162]: tag5
+        - generic [ref=e164]:
+          - generic [ref=e166]:
+            - link [ref=e167] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e168]
+            - generic [ref=e169]:
+              - link "Aleks_test" [ref=e170] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e171]: March 10, 2026
+            - button " 0" [ref=e173] [cursor=pointer]:
+              - generic [ref=e174]: 
+              - text: "0"
+          - link "grandiose Custom Desc Aleks Read more... Test cool tag5" [ref=e175] [cursor=pointer]:
+            - /url: /article/grandiose-41884
+            - heading "grandiose" [level=1] [ref=e176]
+            - paragraph [ref=e177]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e178]:
+              - listitem [ref=e179]: Test
+              - listitem [ref=e180]: cool
+              - listitem [ref=e181]: tag5
+        - generic [ref=e183]:
+          - generic [ref=e185]:
+            - link [ref=e186] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e187]
+            - generic [ref=e188]:
+              - link "Aleks_test" [ref=e189] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e190]: March 10, 2026
+            - button " 0" [ref=e192] [cursor=pointer]:
+              - generic [ref=e193]: 
+              - text: "0"
+          - link "mmm Custom Desc Aleks Read more... Test cool tag5" [ref=e194] [cursor=pointer]:
+            - /url: /article/mmm-41884
+            - heading "mmm" [level=1] [ref=e195]
+            - paragraph [ref=e196]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e197]:
+              - listitem [ref=e198]: Test
+              - listitem [ref=e199]: cool
+              - listitem [ref=e200]: tag5
+        - generic [ref=e202]:
+          - generic [ref=e204]:
+            - link [ref=e205] [cursor=pointer]:
+              - /url: /profile/Aleks_test
+              - img [ref=e206]
+            - generic [ref=e207]:
+              - link "Aleks_test" [ref=e208] [cursor=pointer]:
+                - /url: /profile/Aleks_test
+              - generic [ref=e209]: March 10, 2026
+            - button " 0" [ref=e211] [cursor=pointer]:
+              - generic [ref=e212]: 
+              - text: "0"
+          - link "whoa Custom Desc Aleks Read more... Test cool tag5" [ref=e213] [cursor=pointer]:
+            - /url: /article/whoa-41884
+            - heading "whoa" [level=1] [ref=e214]
+            - paragraph [ref=e215]: Custom Desc Aleks
+            - text: Read more...
+            - list [ref=e216]:
+              - listitem [ref=e217]: Test
+              - listitem [ref=e218]: cool
+              - listitem [ref=e219]: tag5
+        - navigation [ref=e220]:
+          - list [ref=e221]:
+            - listitem:
+              - button "1" [ref=e222]
+            - listitem:
+              - button "2" [ref=e223] [cursor=pointer]
+            - listitem:
+              - button "3" [ref=e224] [cursor=pointer]
+            - listitem:
+              - button "4" [ref=e225] [cursor=pointer]
+    - generic [ref=e227]:
+      - paragraph [ref=e228]: Popular Tags
+      - generic [ref=e229]:
+        - generic [ref=e230] [cursor=pointer]: Test
+        - generic [ref=e231] [cursor=pointer]: Blog
+        - generic [ref=e232] [cursor=pointer]: Git
+        - generic [ref=e233] [cursor=pointer]: YouTube
+        - generic [ref=e234] [cursor=pointer]: tag5
+        - generic [ref=e235] [cursor=pointer]: cool
+        - generic [ref=e236] [cursor=pointer]: Slack
+        - generic [ref=e237] [cursor=pointer]: Bondar Academy
+        - generic [ref=e238] [cursor=pointer]: GitHub
+        - generic [ref=e239] [cursor=pointer]: Zoom
+  - contentinfo [ref=e240]:
+    - generic [ref=e241]:
+      - link "conduit" [ref=e242] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e243]:
+        - text: © 2026. An interactive learning project from
+        - link "RealWorld OSS Project" [ref=e244] [cursor=pointer]:
+          - /url: https://github.com/gothinkster/realworld
+        - text: . Code licensed under MIT. Hosted by
+        - link "Bondar Academy" [ref=e245] [cursor=pointer]:
+          - /url: https://bondaracademy.com
+        - text: .
+```
