@@ -6,6 +6,7 @@ export { expect } from '@playwright/test';
 import axios from 'axios';
 import { PageManager } from '../page-objects/PageManager';
 import { ArticlePage } from '../page-objects/ArticlePage'
+import * as fs from 'fs';
 
 // 1. Чітко описуємо інтерфейс фіктур
 type MyFixtures = {
@@ -71,10 +72,13 @@ export const test = base.extend<MyFixtures>({
             tagList: ["default"]
         };
 
-        const article = await articleBuilder.createNewArticle(defaultData)
+        // const article = await articleBuilder.createNewArticle(defaultData)
+        const article = await articleBuilder.createNewArticle(defaultData, userToken);
+        // const initialArticle = article.data.article;
+        // fs.writeFileSync('.delete_slug', article.slug);
 
         await use(article) // 3. Віддаємо дані в тест
 
-        await articleBuilder.deleteArticle(article.slug) // 5. CLEANUP (виконається ПІСЛЯ тесту)
+        // await articleBuilder.deleteArticle(article.slug) // 5. CLEANUP (виконається ПІСЛЯ тесту)
     }
 })

@@ -8,18 +8,18 @@ test('Create article with defoult title', async ({ testArticle, page }) => {
     await expect.soft(page.locator('h1')).toHaveText(testArticle.title);
 });
 
-test('Create, update annd delete article with custom title', async ({ articlePage, articleBuilder, page }) => {
+test('Create, update annd delete article with custom title', async ({ articlePage, articleBuilder, page, userToken }) => {
     const pageObj = articlePage();
     const newTitle = `Updated ${faker.word.sample()} ${Date.now()}`;
-    // const articleFirstPage = pageManager.onArticlePage();
     const articlePageWithFilters = articlePage(newTitle);
+    
     const initialArticle = await articleBuilder.createNewArticle(
         {
             title: `${faker.word.sample()}`,
             description: "Custom Desc Aleks",
             body: "Custom Body Aleks",
             tagList: ["cool", "test", "tag5"]
-        }
+        }, userToken
     );
 
     await page.goto(`/article/${initialArticle.slug}`);

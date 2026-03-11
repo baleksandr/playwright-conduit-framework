@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 // import axios from 'axios';
 import { AxiosInstance } from 'axios';
 
@@ -12,15 +13,19 @@ export class ArticleHelper {
     }
 
     // Метод для створення статті через POST запит
-    async createNewArticle(articleData: { title: string, description: string, body: string, tagList: string[] }) {
+    async createNewArticle(articleData: { title: string, description: string, body: string, tagList: string[] }, token: string) {
         const response = await this.api.post('/articles', { article: articleData });
 
-        // Перевіряємо статус прямо тут
         if (response.status !== 201) {
-            throw new Error(`API Error: Expected 201, but got ${response.status}. Body: ${JSON.stringify(response.data)}`)
+            throw new Error(`API Error: Expected 201, but got ${response.status}`);
         }
-        
-        return response.data.article // Повертаємо ТІЛЬКИ дані статті. Тепер це зручно!
+
+        const initialArticle = response.data.article;
+
+        const cleanupData = JSON.stringify({ slug: initialArticle.slug, token: token });
+         fs.appendFileSync('.delete_slug', cleanupData + '\n');
+
+        return initialArticle;
     }
 
     async updateArticle(slug: string, updatedData: { title?: string, description?: string, body?: string, tagList?: string[] }) {

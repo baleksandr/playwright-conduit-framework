@@ -9,7 +9,7 @@ if (!process.env.CI) {
 }
 
 export default defineConfig({
-  timeout: 40000, 
+  timeout: 40000,
   expect: {
     timeout: 10000,
   },
@@ -31,6 +31,8 @@ export default defineConfig({
     video: 'on-first-retry',
     trace: 'on-first-retry',
   },
+  globalSetup: './global-setup.ts',
+  globalTeardown: './global-teardown.ts',
 
   projects: [
     {
