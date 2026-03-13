@@ -12,6 +12,7 @@ export class ArticlePage {
         this.page = page
         this.tagList = page.locator('.tag-list');
         const baseLocator = page.locator('app-article-preview');
+        //Scoped Locators
         this.articleCard = articleTitle
             ? baseLocator.filter({ hasText: articleTitle })
             : baseLocator.first()

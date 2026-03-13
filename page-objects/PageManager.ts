@@ -9,6 +9,7 @@ export class PageManager {
         this.page = page
     }
 
+// Фабричний метод, який створює компонент "на льоту" /  Component-Based Page Objects
     onArticlePage(title?: string) {
         return new ArticlePage(this.page, title);
     }
