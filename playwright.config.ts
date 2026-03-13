@@ -28,7 +28,7 @@ export default defineConfig({
     navigationTimeout: 15000,     // ТАЙМАУТ ДЛЯ НАВІГАЦІЇ (page.goto)
     baseURL: 'https://conduit.bondaracademy.com',
     screenshot: 'on',
-    video: 'on-first-retry',
+    video: 'retain-on-failure',
     trace: 'on-first-retry',
   },
   globalSetup: './global-setup.ts',
