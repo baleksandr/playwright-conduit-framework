@@ -59,14 +59,31 @@ jobs:
         run: npx playwright test
 
       # 3. ГЕНЕРАЦІЯ ЗВІТУ
+      #- name: Generate Allure Report
+      #  if: always()
+      # run: |
+      #    echo "Checking for attachments..."
+      #    ls allure-results | grep -E "\.(png|webm|mp4|json)$" || echo "No attachments found!"
+      #    npx allure generate allure-results --clean -o allure-report
       - name: Generate Allure Report
         if: always()
         run: |
-          echo "Checking for attachments..."
-          ls allure-results | grep -E "\.(png|webm|mp4|json)$" || echo "No attachments found!"
           npx allure generate allure-results --clean -o allure-report
+          
+          # 🔥 МАГИЯ ТУТ: Создаем папку для трейсов внутри отчета
+          mkdir -p allure-report/traces
+          # Копируем все zip-файлы из папки результатов тестов в отчет
+          # Мы используем '|| true', чтобы пайплайн не упал, если трейсов нет
+          cp test-results/**/*.zip allure-report/traces/ || true
 
       # 4. ДЕПЛОЙ ЗВІТУ
+      #- name: Deploy Allure Report to GitHub Pages
+      #  if: always()
+      #  uses: peaceiris/actions-gh-pages@v3
+      # with:
+      #    github_token: ${{ secrets.GITHUB_TOKEN }}
+      #    publish_dir: ./allure-report
+      #    publish_branch: gh-pages
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -74,7 +91,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
           publish_branch: gh-pages
-
+          
       # 5. ЗБЕРІГАЄМО АРТЕФАКТИ
       - name: Upload Playwright Artifacts
         if: always()
