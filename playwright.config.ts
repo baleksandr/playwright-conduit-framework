@@ -29,7 +29,7 @@ export default defineConfig({
     baseURL: 'https://conduit.bondaracademy.com',
     screenshot: 'on',
     video: 'retain-on-failure',
-    trace: 'on-first-retry',
+    trace: 'on',
   },
   globalSetup: './global-setup.ts',
   globalTeardown: './global-teardown.ts',
