@@ -23,7 +23,7 @@ test('Create, update annd delete article with custom title', async ({ articlePag
     );
 
     await page.goto(`/article/${initialArticle.slug}`);
-    await expect(page.locator('.tag-list')).toContainText('tag6')
+    await expect(page.locator('.tag-list')).toContainText('tag5')
 
     const updatedArticle = await articleBuilder.updateArticle(initialArticle.slug,
         {
