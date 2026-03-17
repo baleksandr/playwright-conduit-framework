@@ -3,7 +3,10 @@ import { faker } from '@faker-js/faker'
 
 test('Create article with defoult title', async ({ testArticle, page }) => {
 
-    await page.goto(`/article/${testArticle.slug}`);
+    const response = await page.goto(`/article/${testArticle.slug}`);
+    // Перевірка статус‑коду
+    expect(response?.status()).toBe(200)
+    await expect(page).toHaveURL(`/article/${testArticle.slug}`)
     await expect(page.locator('.tag-list')).toContainText('default');
     await expect.soft(page.locator('h1')).toHaveText(testArticle.title);
 });
@@ -12,7 +15,7 @@ test('Create, update annd delete article with custom title', async ({ articlePag
     const pageObj = articlePage();
     const newTitle = `Updated ${faker.word.sample()} ${Date.now()}`;
     const articlePageWithFilters = articlePage(newTitle);
-    
+
     const initialArticle = await articleBuilder.createNewArticle(
         {
             title: `${faker.word.sample()}`,
